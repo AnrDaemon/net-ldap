@@ -1,0 +1,41 @@
+{
+    "name": "anrdaemon/net-ldap",
+    "description": "A very thin OOP wrapper over standard ldap extension",
+    "type": "library",
+    "require": {
+        "php": ">= 7.1",
+        "ext-ldap": "*"
+    },
+    "license": "WTFPL",
+    "extra": {
+        "branch-alias": {
+            "dev-trunk": "0.x-dev",
+            "dev-master": "0.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "AnrDaemon\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AnrDaemon\\Tests\\": "test/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">= 7.0"
+    },
+    "authors": [
+        {
+            "name": "Andrey Repin",
+            "email": "anrdaemon@yandex.ru"
+        }
+    ],
+    "minimum-stability": "stable",
+    "config": {
+        "platform": {
+            "php": "7.1"
+        }
+    }
+}
