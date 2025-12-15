@@ -121,7 +121,7 @@ class Ldap {
      * @param int $timelimit
      * @param int $deref
      * @param ?array $controls
-     * @return array[]
+     * @return array[][] Array of search results. It will return an array per search filter/base.
      */
     public function search($base, $filter, $attributes = [], int $attributes_only = 0, int $sizelimit = -1, int $timelimit = -1, int $deref = \LDAP_DEREF_NEVER, ?array $controls = null): array {
         $count = 1;
@@ -163,5 +163,23 @@ class Ldap {
         if ($pver < ($minVersion ?? static::PROTO_MIN_VERSION)) {
             $this->setOpt(\LDAP_OPT_PROTOCOL_VERSION, $minVersion ?? static::PROTO_MIN_VERSION);
         }
+    }
+
+
+    public function __destruct() {
+        if (!$this->ldap) {
+            return;
+        }
+
+        $this->perform("ldap_unbind");
+    }
+
+
+    public function __clone() {
+        if (!is_object($this->ldap)) {
+            return;
+        }
+
+        $this->ldap = clone $this->ldap;
     }
 }
